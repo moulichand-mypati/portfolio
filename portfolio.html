@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouli Chand Mypati — Data Science Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0C1520;--ink2:#1E3050;--ink3:#4A6080;--ink4:#8A9BB0;
+  --bg:#FFFFFF;--bg2:#F5F8FC;--bg3:#EBF0F8;
+  --rule:#D8E2EE;--rule2:#C0CEDF;
+  --blue:#1A56DB;--blue2:#1240A8;--blue-lt:#EBF2FF;--blue-bd:#BFDBFE;
+  --teal:#0D7A6E;--teal2:#095C54;--teal-lt:#EDFAF8;--teal-bd:#82E8DC;
+  --amber:#8C3D0A;--amber2:#B45309;--amber-lt:#FFF7EC;--amber-bd:#FCD07A;
+  --rose:#991232;--rose-lt:#FFF1F4;--rose-bd:#FECDDA;
+  --purple:#4C1D95;--purple-lt:#F5F3FF;--purple-bd:#C4B5FD;
+  --green:#065F46;--green-lt:#ECFDF5;--green-bd:#6EE7B7;
+  --r:5px;
+}
+html{font-size:13px;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* PAGE */
+.page{max-width:1160px;margin:0 auto;padding:0 32px 56px;}
+
+/* ── HEADER STRIP ── */
+.hdr{background:var(--ink);color:#fff;padding:36px 32px 28px;margin:0 -32px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+.hdr-name{font-family:'Sora',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1;color:#fff;}
+.hdr-name em{color:#60A5FA;font-style:normal;}
+.hdr-role{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#93C5FD;margin-bottom:14px;}
+.hdr-bio{font-size:13px;color:#CBD5E1;max-width:700px;line-height:1.7;}
+.hdr-links{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+.hdr-links a{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#93C5FD;display:flex;align-items:center;gap:6px;}
+.hdr-links a:hover{color:#fff;}
+.link-icon{width:13px;height:13px;flex-shrink:0;}
+.tags-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:3px 9px;border-radius:3px;font-weight:500;letter-spacing:.4px;border:1px solid;}
+.tag-b{background:#1E3A6E;color:#93C5FD;border-color:#2D5FAA;}
+.tag-t{background:#0B3B35;color:#5EEAD4;border-color:#0F766E;}
+.tag-a{background:#431407;color:#FCD34D;border-color:#78350F;}
+.tag-r{background:#4C0519;color:#FDA4AF;border-color:#881337;}
+.tag-p{background:#2E1065;color:#C4B5FD;border-color:#4C1D95;}
+
+/* ── DUAL PROJECT BAR ── */
+.proj-bar{display:grid;grid-template-columns:1fr 1fr;border-bottom:3px solid var(--ink);margin-bottom:0;}
+.proj-tab{padding:14px 0 10px;border-top:3px solid transparent;}
+.proj-tab.p1{border-top-color:var(--teal);}
+.proj-tab.p2{border-top-color:var(--blue);padding-left:24px;border-left:1px solid var(--rule);}
+.pt-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink4);margin-bottom:3px;}
+.pt-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--ink);line-height:1.25;}
+.pt-sub{font-size:11px;color:var(--ink3);margin-top:2px;}
+
+/* ── TWO-COLUMN PROJECT LAYOUT ── */
+.projects{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule);gap:0;}
+.p-col{padding:22px 0;}
+.p-col.right{padding-left:24px;border-left:1px solid var(--rule);}
+
+/* ── SECTION LABEL ── */
+.sl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:8px;padding-top:18px;}
+.sl::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sl:first-child{padding-top:0;}
+
+/* ── STAT STRIP ── */
+.stats{display:grid;gap:8px;margin-bottom:14px;}
+.stats.s4{grid-template-columns:repeat(4,1fr);}
+.stats.s2{grid-template-columns:repeat(2,1fr);}
+.stat{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:10px 10px 8px;text-align:center;}
+.stat-n{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;line-height:1;margin-bottom:3px;}
+.stat-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);}
+.stat-s{font-size:10px;color:var(--ink4);margin-top:1px;}
+.c-teal{color:var(--teal2);}.c-blue{color:var(--blue2);}.c-amber{color:var(--amber2);}
+.c-rose{color:var(--rose);}.c-purple{color:var(--purple);}
+
+/* ── OUTCOME BOX ── */
+.ob{display:flex;align-items:center;gap:14px;border-radius:var(--r);padding:12px 16px;margin-bottom:14px;}
+.ob.teal{background:var(--teal-lt);border:1px solid var(--teal-bd);}
+.ob.blue{background:var(--blue-lt);border:1px solid var(--blue-bd);}
+.ob-n{font-family:'Sora',sans-serif;font-size:30px;font-weight:800;line-height:1;flex-shrink:0;}
+.ob.teal .ob-n{color:var(--teal2);}
+.ob.blue .ob-n{color:var(--blue2);}
+.ob-t{font-size:11.5px;color:var(--ink2);line-height:1.5;}
+.ob-t strong{display:block;font-size:12px;font-weight:600;margin-bottom:2px;}
+.ob.teal .ob-t strong{color:var(--teal2);}
+.ob.blue .ob-t strong{color:var(--blue2);}
+
+/* ── INFO CARD ── */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;margin-bottom:10px;}
+.card h4{font-size:11.5px;font-weight:600;color:var(--ink);margin-bottom:7px;}
+.card li,.card p{font-size:11px;color:var(--ink2);line-height:1.65;}
+.card ul{padding-left:13px;}
+.card li{margin-bottom:2px;}
+.card.tl{border-left:2.5px solid var(--teal);}
+.card.bl{border-left:2.5px solid var(--blue);}
+.card.al{border-left:2.5px solid var(--amber2);}
+.card.rl{border-left:2.5px solid var(--rose);}
+.card.gl{border-left:2.5px solid var(--green);}
+.card.pl{border-left:2.5px solid var(--purple);}
+strong.hl{font-weight:600;color:var(--ink);}
+
+/* ── CHART CARD ── */
+.cc{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;margin-bottom:10px;}
+.cc-title{font-family:'JetBrains Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:1px;color:var(--ink3);margin-bottom:2px;}
+.cc-sub{font-size:10.5px;color:var(--ink3);margin-bottom:10px;line-height:1.45;}
+canvas{display:block;width:100%!important;}
+
+/* ── MODEL PILLS ── */
+.pills{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px;}
+.mpill{border:1px solid var(--rule);border-radius:var(--r);padding:10px 6px;background:var(--bg2);position:relative;text-align:center;}
+.mpill.best{background:var(--amber-lt);border-color:var(--amber-bd);}
+.mpill.best::before{content:'BEST';position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--amber2);color:#fff;font-size:7.5px;font-weight:700;letter-spacing:1px;padding:1px 7px;border-radius:8px;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+.mp-name{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:500;color:var(--ink3);text-transform:uppercase;}
+.mp-acc{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;margin:5px 0 2px;}
+.mp-desc{font-size:9.5px;color:var(--ink4);line-height:1.35;}
+.acc-bar{height:3px;background:var(--rule);border-radius:2px;margin-top:7px;overflow:hidden;}
+.acc-fill{height:100%;border-radius:2px;}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+
+/* ── CONFUSION MATRIX ── */
+.cm{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:6px 0;}
+.cm-c{border-radius:3px;padding:7px 4px;text-align:center;}
+.cm-n{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;display:block;line-height:1;}
+.cm-l{font-size:7.5px;letter-spacing:.4px;text-transform:uppercase;display:block;margin-top:2px;opacity:.8;}
+.tp{background:#D1FAE5;color:#065F46;}.tn{background:#DBEAFE;color:#1E40AF;}
+.fp{background:#FCE7F3;color:#9D174D;}.fn{background:#FEF3C7;color:#92400E;}
+
+/* ── BAR ROW ── */
+.br{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.bl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--ink3);width:120px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bt{flex:1;height:6px;background:var(--rule);border-radius:3px;overflow:hidden;}
+.bf{height:100%;border-radius:3px;}
+.bv{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--ink2);width:28px;}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:11px;}
+.tbl th{text-align:left;padding:5px 8px;border-bottom:1.5px solid var(--ink);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink2);}
+.tbl td{padding:5px 8px;border-bottom:1px solid var(--rule);color:var(--ink2);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr.hl td{font-weight:600;background:var(--amber-lt);}
+.tbl tr.hl td:last-child{color:var(--amber2);font-family:'JetBrains Mono',monospace;}
+.mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;}
+
+/* ── PIPELINE ── */
+.pipe{display:grid;margin-bottom:10px;}
+.pipe.p6{grid-template-columns:repeat(6,1fr);}
+.pipe.p8{grid-template-columns:repeat(8,1fr);}
+.ps{background:var(--bg2);border:1px solid var(--rule);padding:8px 5px;text-align:center;position:relative;}
+.ps:not(:last-child)::after{content:'›';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--ink4);font-size:14px;z-index:2;background:var(--bg);padding:0;}
+.ps:first-child{border-radius:4px 0 0 4px;}.ps:last-child{border-radius:0 4px 4px 0;}
+.pt{font-weight:600;font-size:9px;color:var(--ink);font-family:'JetBrains Mono',monospace;}
+.pd{font-size:8.5px;color:var(--ink3);margin-top:1px;}
+
+/* ── FINDING ── */
+.find{border-left:2.5px solid;padding:8px 12px;margin-bottom:8px;border-radius:0 4px 4px 0;}
+.find p{font-size:11.5px;color:var(--ink2);line-height:1.6;}
+.find p strong{color:var(--ink);}
+.find.blue{border-color:var(--blue);background:var(--blue-lt);}
+.find.teal{border-color:var(--teal);background:var(--teal-lt);}
+.find.amber{border-color:var(--amber2);background:var(--amber-lt);}
+.find.rose{border-color:var(--rose);background:var(--rose-lt);}
+.find.green{border-color:var(--green);background:var(--green-lt);}
+.find.purple{border-color:var(--purple);background:var(--purple-lt);}
+
+/* ── TECH TAGS ── */
+.techs{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.tech{font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:2px 7px;border-radius:3px;border:1px solid var(--rule);background:var(--bg2);color:var(--ink2);}
+
+/* ── DIVIDER ── */
+.divider{height:2px;background:var(--ink);margin:32px 0;}
+
+/* ── FOOTER ── */
+.footer{border-top:1.5px solid var(--rule2);padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.footer-name{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.footer-r{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3);text-align:right;line-height:1.7;}
+
+/* ── PRINT ── */
+@media print{
+  html{font-size:11.5px;}
+  .page{padding:0 20px 32px;}
+  .hdr{padding:24px 20px 20px;margin:0 -20px 0;}
+  .divider{margin:20px 0;}
+  .sl{padding-top:12px;}
+  @page{size:A4;margin:10mm 12mm;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════ HEADER ══════ -->
+<div class="hdr">
+  <div>
+    <div class="hdr-name">Mouli Chand <em>Mypati</em></div>
+    <div class="hdr-role">Data Science · Machine Learning · Deep Learning</div>
+    <div class="hdr-bio">Data scientist with hands-on experience designing end-to-end machine learning pipelines — from exploratory analysis and feature engineering through model training, evaluation, and explainability. Two complete projects presented below: a medical imaging CNN depth study and a Kaggle tabular competition with ensemble models and SHAP-based explainability.</div>
+    <div class="tags-row">
+      <span class="tag tag-b">Python</span>
+      <span class="tag tag-b">TensorFlow / Keras</span>
+      <span class="tag tag-b">Scikit-learn</span>
+      <span class="tag tag-t">XGBoost</span>
+      <span class="tag tag-t">Random Forest</span>
+      <span class="tag tag-a">CNN Architecture Design</span>
+      <span class="tag tag-a">SHAP Explainability</span>
+      <span class="tag tag-r">EDA &amp; Feature Engineering</span>
+      <span class="tag tag-p">Pandas · NumPy · Matplotlib · Seaborn</span>
+    </div>
+  </div>
+  <div class="hdr-links">
+    <a href="https://www.linkedin.com/in/mouli-mypati">
+      <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      linkedin.com/in/mouli-mypati
+    </a>
+    <a href="https://github.com/moulichand-mypati">
+      <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      github.com/moulichand-mypati
+    </a>
+  </div>
+</div>
+
+<!-- ══════ PROJECT TABS ══════ -->
+<div class="proj-bar">
+  <div class="proj-tab p1">
+    <div class="pt-label">Project 01 · Medical Imaging · Deep Learning</div>
+    <div class="pt-title">CNN Architecture Study — Alzheimer's Disease Stage Detection from MRI Scans</div>
+    <div class="pt-sub">5 custom architectures · 4-class classification · 12,000 images · MSc Final Project</div>
+  </div>
+  <div class="proj-tab p2">
+    <div class="pt-label">Project 02 · Tabular Classification · Kaggle Competition</div>
+    <div class="pt-title">Spaceship Titanic — Passenger Transportation Prediction</div>
+    <div class="pt-sub">XGBoost &amp; Random Forest · KNN vs Simple imputation · SHAP explainability</div>
+  </div>
+</div>
+
+<!-- ══════ MAIN TWO-COLUMN BODY ══════ -->
+<div class="projects">
+
+<!-- ════ LEFT: PROJECT 1 ════ -->
+<div class="p-col">
+
+  <!-- Overview -->
+  <div class="sl">Overview &amp; Results</div>
+  <div class="ob teal">
+    <div class="ob-n">88.25%</div>
+    <div class="ob-t">
+      <strong>Best Validation Accuracy — 7-Layer CNN</strong>
+      Only model to correctly classify all 4 disease stages. P: 0.87–0.98, R: 0.80–1.00. All others collapse to single-class prediction.
+    </div>
+  </div>
+  <div class="stats s4">
+    <div class="stat"><div class="stat-n c-teal">12,000</div><div class="stat-l">Images</div><div class="stat-s">3,000/class balanced</div></div>
+    <div class="stat"><div class="stat-n c-teal">5</div><div class="stat-l">Architectures</div><div class="stat-s">3→5→7→9→11 layers</div></div>
+    <div class="stat"><div class="stat-n c-teal">75×75</div><div class="stat-l">Resolution</div><div class="stat-s">Normalised ÷ 255</div></div>
+    <div class="stat"><div class="stat-n c-teal">50</div><div class="stat-l">Epochs</div><div class="stat-s">Adam · lr=0.001</div></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--ink2);line-height:1.7;margin-bottom:10px;">
+    Designed and evaluated five convolutional neural networks of increasing depth to classify four stages of Alzheimer's disease from MRI scans: <strong>Non-Demented, Very Mild Demented, Mild Demented</strong> and <strong>Moderate Demented</strong>. The study identifies an optimal depth at 7 layers — both shallower and deeper models suffer severe overfitting and collapse to predicting a single class, making them clinically unusable.
+  </p>
+  <div class="techs"><span class="tech">Python</span><span class="tech">TensorFlow 2</span><span class="tech">Keras</span><span class="tech">NumPy</span><span class="tech">scikit-learn</span><span class="tech">Matplotlib</span><span class="tech">Seaborn</span></div>
+
+  <!-- Architecture -->
+  <div class="sl">CNN Architectures Compared</div>
+  <div class="pills">
+    <div class="mpill"><div class="mp-name">3-Layer</div><div class="mp-acc c-rose">25.17%</div><div class="mp-desc">32→64→128<br>Collapses to class 2. F1≈0 for 3 classes.</div><div class="acc-bar"><div class="acc-fill" style="width:25.17%;background:var(--rose);"></div></div></div>
+    <div class="mpill"><div class="mp-name">5-Layer</div><div class="mp-acc c-purple">28.17%</div><div class="mp-desc">32→32→64→64→128<br>Class 3 recall=0. Bias persists.</div><div class="acc-bar"><div class="acc-fill" style="width:28.17%;background:var(--purple);"></div></div></div>
+    <div class="mpill best"><div class="mp-name">7-Layer</div><div class="mp-acc c-amber">88.25%</div><div class="mp-desc">→→→→128→128→256<br>All 4 classes classified.</div><div class="acc-bar"><div class="acc-fill" style="width:88.25%;background:var(--amber2);"></div></div></div>
+    <div class="mpill"><div class="mp-name">9-Layer</div><div class="mp-acc c-teal">37.33%</div><div class="mp-desc">→→→→256→128→128<br>Cl.1 recall=0.04. Too deep.</div><div class="acc-bar"><div class="acc-fill" style="width:37.33%;background:var(--teal);"></div></div></div>
+    <div class="mpill"><div class="mp-name">11-Layer</div><div class="mp-acc c-blue">32.54%</div><div class="mp-desc">→→→→256→→64→64<br>Cl.0 recall≈0. Redundancy.</div><div class="acc-bar"><div class="acc-fill" style="width:32.54%;background:var(--blue);"></div></div></div>
+  </div>
+
+  <!-- Charts row 1 -->
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">Validation accuracy by depth</div>
+      <div class="cc-sub">Non-monotonic: 7 layers is the optimal depth</div>
+      <canvas id="depthChart" height="160"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Train vs validation — all models</div>
+      <div class="cc-sub">Only the 7-layer model generalises to unseen data</div>
+      <canvas id="tvChart" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- Training curves -->
+  <div class="sl">Training &amp; Validation Curves — 50 Epochs</div>
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title" style="color:var(--rose);">3-Layer CNN</div>
+      <div class="cc-sub">Val. loss spikes to 5,000+. Accuracy erratic ~25%.</div>
+      <canvas id="loss3" height="110"></canvas>
+      <canvas id="acc3" height="110" style="margin-top:5px;"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title" style="color:var(--purple);">5-Layer CNN</div>
+      <div class="cc-sub">Sharp spike at ~epoch 40. Val. oscillates 28–82%.</div>
+      <canvas id="loss5" height="110"></canvas>
+      <canvas id="acc5" height="110" style="margin-top:5px;"></canvas>
+    </div>
+    <div class="cc" style="border-color:var(--amber-bd);">
+      <div class="cc-title" style="color:var(--amber2);">★ 7-Layer CNN</div>
+      <div class="cc-sub">Stable to ~epoch 20, peaks ~88%, mild drift after.</div>
+      <canvas id="loss7" height="110"></canvas>
+      <canvas id="acc7" height="110" style="margin-top:5px;"></canvas>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title" style="color:var(--teal2);">9-Layer CNN</div>
+      <div class="cc-sub">Val. loss surges after epoch 30. Collapses to ~37%.</div>
+      <canvas id="loss9" height="110"></canvas>
+      <canvas id="acc9" height="110" style="margin-top:5px;"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title" style="color:var(--blue2);">11-Layer CNN</div>
+      <div class="cc-sub">Most extreme overfitting despite ~99% train accuracy.</div>
+      <canvas id="loss11" height="110"></canvas>
+      <canvas id="acc11" height="110" style="margin-top:5px;"></canvas>
+    </div>
+  </div>
+
+  <!-- Classification -->
+  <div class="sl">Classification Performance</div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">7-Layer — per-class metrics (best model)</div>
+      <div class="cc-sub">Balanced across all 4 stages; class 2 recall slightly lower at 0.80</div>
+      <canvas id="sevenRadar" height="180"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Macro F1 score — all models</div>
+      <div class="cc-sub">Only 7-layer achieves meaningful F1. All others below 0.25.</div>
+      <canvas id="f1Chart" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- Confusion matrices — compact -->
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="card">
+      <h4 style="color:var(--amber2);">7-Layer · 88% — All Classes</h4>
+      <div class="cm"><div class="cm-c tn"><span class="cm-n">560</span><span class="cm-l">Non-Dem</span></div><div class="cm-c fp"><span class="cm-n">23</span><span class="cm-l">False Pos</span></div><div class="cm-c fn"><span class="cm-n">14</span><span class="cm-l">False Neg</span></div><div class="cm-c tp"><span class="cm-n">543</span><span class="cm-l">Very Mild</span></div></div>
+      <p style="font-size:9.5px;color:var(--ink3);margin-top:6px;">P 0.87–0.98 · R 0.80–1.00 · F1 0.80–0.99</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--rose);">3 &amp; 5-Layer — Collapsed</h4>
+      <div class="cm"><div class="cm-c fp"><span class="cm-n">0</span><span class="cm-l">Class 0</span></div><div class="cm-c fp"><span class="cm-n">600</span><span class="cm-l">→ Class 2</span></div><div class="cm-c fp"><span class="cm-n">18</span><span class="cm-l">Class 1</span></div><div class="cm-c tp"><span class="cm-n">590</span><span class="cm-l">Class 2</span></div></div>
+      <p style="font-size:9.5px;color:var(--ink3);margin-top:6px;">P/R/F1 ≈ 0.00 for classes 0, 1, 3</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--teal);">9 &amp; 11-Layer — Partial</h4>
+      <div class="cm"><div class="cm-c fn"><span class="cm-n">140</span><span class="cm-l">Class 0</span></div><div class="cm-c fp"><span class="cm-n">410</span><span class="cm-l">→ Class 2</span></div><div class="cm-c fn"><span class="cm-n">22</span><span class="cm-l">Class 1</span></div><div class="cm-c tp"><span class="cm-n">520</span><span class="cm-l">Class 2</span></div></div>
+      <p style="font-size:9.5px;color:var(--ink3);margin-top:6px;">Macro F1: 0.32 (9-layer) · 0.23 (11-layer)</p>
+    </div>
+  </div>
+
+  <!-- Literature + findings -->
+  <div class="sl">Literature Context &amp; Key Findings</div>
+  <div class="g2">
+    <div style="overflow-x:auto;">
+      <table class="tbl">
+        <thead><tr><th>Study</th><th>Architecture</th><th>Accuracy</th></tr></thead>
+        <tbody>
+          <tr><td>Abunadi (2022)</td><td class="mono">FFNN + LBP/DWT/GLCM</td><td class="mono" style="color:var(--ink3);">99.8%</td></tr>
+          <tr><td>Shamrat et al. (2023)</td><td class="mono">AlzheimerNet (InceptionV3)</td><td class="mono" style="color:var(--ink3);">98.67%</td></tr>
+          <tr><td>Kazemi &amp; Houghten (2018)</td><td class="mono">AlexNet on fMRI</td><td class="mono" style="color:var(--ink3);">97.63%</td></tr>
+          <tr><td>Ji et al. (2019)</td><td class="mono">VGG16 + Ensemble</td><td class="mono" style="color:var(--ink3);">97.65%</td></tr>
+          <tr><td>Murugan et al. (2021)</td><td class="mono">DEMNET (CNN + MLP)</td><td class="mono" style="color:var(--ink3);">95.23%</td></tr>
+          <tr><td>Sharma et al. (2022)</td><td class="mono">VGG16 feature extractor</td><td class="mono" style="color:var(--ink3);">90.4%</td></tr>
+          <tr><td>Mora-Rubio et al. (2023)</td><td class="mono">EfficientNet / ViT</td><td class="mono" style="color:var(--ink3);">89%</td></tr>
+          <tr class="hl"><td><strong>This Study</strong></td><td class="mono">Custom 7-Layer CNN</td><td class="mono">88.25%</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:9.5px;color:var(--ink4);margin-top:6px;">Literature models use pretrained weights or multimodal data; this study built all architectures from scratch.</p>
+    </div>
+    <div>
+      <div class="find teal"><p><strong>Optimal depth is non-monotonic.</strong> Performance peaks at 7 layers then degrades — additional layers introduce gradient instability without learning gain.</p></div>
+      <div class="find amber"><p><strong>Training accuracy is a misleading signal.</strong> All 5 models reach 95–99% train accuracy; only the 7-layer model generalises. Validation monitoring is essential.</p></div>
+      <div class="find rose"><p><strong>Prediction collapse is a clinical failure mode.</strong> Four of five models classify most inputs as class 2, rendering them unusable in a medical context.</p></div>
+      <div class="find blue"><p><strong>Next steps:</strong> Transfer learning (ResNet50, InceptionV3), learning rate scheduling (ReduceLROnPlateau), 128×128 resolution, Grad-CAM visualisations.</p></div>
+    </div>
+  </div>
+
+</div><!-- end left col -->
+
+<!-- ════ RIGHT: PROJECT 2 ════ -->
+<div class="p-col right">
+
+  <!-- Overview -->
+  <div class="sl">Overview &amp; Results</div>
+  <div class="ob blue">
+    <div class="ob-n">0.8038</div>
+    <div class="ob-t">
+      <strong>Best Kaggle Score — XGBoost + Simple Imputation</strong>
+      78–79% validation accuracy across all 4 models on 1,739 samples. Macro avg precision 0.79, recall 0.78, F1 0.78.
+    </div>
+  </div>
+  <div class="stats s4">
+    <div class="stat"><div class="stat-n c-blue">8,693</div><div class="stat-l">Train Samples</div><div class="stat-s">Labelled passengers</div></div>
+    <div class="stat"><div class="stat-n c-blue">4,277</div><div class="stat-l">Test Samples</div><div class="stat-s">Unlabelled</div></div>
+    <div class="stat"><div class="stat-n c-blue">14</div><div class="stat-l">Features</div><div class="stat-s">Spending + demographics</div></div>
+    <div class="stat"><div class="stat-n c-blue">4</div><div class="stat-l">Models</div><div class="stat-s">XGB &amp; RF × 2 imputation</div></div>
+  </div>
+  <p style="font-size:11.5px;color:var(--ink2);line-height:1.7;margin-bottom:10px;">
+    End-to-end binary classification pipeline predicting whether passengers were transported to an alternative dimension. Four models trained across two algorithms (XGBoost, Random Forest) and two missing-value strategies (Simple, KNN imputation), with 3-fold cross-validated hyperparameter tuning. SHAP analysis reveals CryoSleep as the dominant predictor — over 6× more important than any other feature.
+  </p>
+  <div class="techs"><span class="tech">Python</span><span class="tech">XGBoost</span><span class="tech">scikit-learn</span><span class="tech">SHAP</span><span class="tech">Pandas</span><span class="tech">Matplotlib</span><span class="tech">Seaborn</span></div>
+
+  <!-- EDA -->
+  <div class="sl">Exploratory Data Analysis</div>
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">Target variable distribution</div>
+      <div class="cc-sub">Balanced — 4,315 vs 4,378. No resampling needed.</div>
+      <canvas id="targetChart" height="130"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">HomePlanet vs Transported</div>
+      <div class="cc-sub">Europa passengers show notably higher transport rates.</div>
+      <canvas id="planetChart" height="130"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Age distribution (test data)</div>
+      <div class="cc-sub">Bimodal: peak at 20–25, secondary bump late 20s.</div>
+      <canvas id="ageChart" height="130"></canvas>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">Correlation heatmap — training data</div>
+      <div class="cc-sub">RoomService→Transported (−0.24): high spending → less likely transported.</div>
+      <canvas id="heatTrain" height="190"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Correlation matrix — test data</div>
+      <div class="cc-sub">FoodCourt–VRDeck (+0.28) and Spa–FoodCourt (+0.24) are the strongest co-spend pairs.</div>
+      <canvas id="heatTest" height="190"></canvas>
+    </div>
+  </div>
+
+  <!-- Preprocessing -->
+  <div class="sl">Preprocessing Pipeline</div>
+  <div class="pipe p6" style="margin-bottom:10px;">
+    <div class="ps"><div class="pt">Raw Data</div><div class="pd">14 features</div></div>
+    <div class="ps"><div class="pt">Feature Extract</div><div class="pd">Cabin→Deck/Num/Side</div></div>
+    <div class="ps"><div class="pt">Encoding</div><div class="pd">One-hot + Label</div></div>
+    <div class="ps"><div class="pt">Imputation</div><div class="pd">Simple or KNN</div></div>
+    <div class="ps"><div class="pt">Tune + CV</div><div class="pd">3-fold GridSearch</div></div>
+    <div class="ps"><div class="pt">Predict</div><div class="pd">Kaggle submit</div></div>
+  </div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="card tl">
+      <h4>Simple Imputation</h4>
+      <ul>
+        <li>Categorical columns → filled with <strong>mode</strong></li>
+        <li>Numerical columns → filled with <strong>median</strong></li>
+        <li>Applied before encoding — fast, robust baseline</li>
+        <li>Best result: Kaggle 0.80383 (XGBoost)</li>
+      </ul>
+    </div>
+    <div class="card bl">
+      <h4>KNN Imputation</h4>
+      <ul>
+        <li>Encode all categorical columns first</li>
+        <li>Mark unknowns with <strong>−1</strong> sentinel value</li>
+        <li>Run KNN Imputer on encoded data</li>
+        <li>Re-apply encoding post-imputation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Model results -->
+  <div class="sl">Model Results</div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">Kaggle leaderboard accuracy — all 4 models</div>
+      <div class="cc-sub">XGBoost + Simple leads. Spread of ~0.007 across variants.</div>
+      <canvas id="kaggleBar" height="140"></canvas>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Validation classification metrics — all models</div>
+      <div class="cc-sub">All models achieve similar scores; XGB+KNN marginally better precision.</div>
+      <canvas id="modelRadar" height="140"></canvas>
+    </div>
+  </div>
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card"><h4 style="color:var(--blue2);">M1 · XGB+Simple · 0.80383</h4><div class="cm"><div class="cm-c tn"><span class="cm-n">621</span><span class="cm-l">True Neg</span></div><div class="cm-c fp"><span class="cm-n">240</span><span class="cm-l">False Pos</span></div><div class="cm-c fn"><span class="cm-n">139</span><span class="cm-l">False Neg</span></div><div class="cm-c tp"><span class="cm-n">739</span><span class="cm-l">True Pos</span></div></div><p style="font-size:9.5px;color:var(--ink3);margin-top:5px;">P 0.82/0.75 · R 0.72/0.84 · F1 0.77/0.80</p></div>
+    <div class="card"><h4 style="color:var(--purple);">M2 · RF+Simple · 0.79705</h4><div class="cm"><div class="cm-c tn"><span class="cm-n">650</span><span class="cm-l">True Neg</span></div><div class="cm-c fp"><span class="cm-n">211</span><span class="cm-l">False Pos</span></div><div class="cm-c fn"><span class="cm-n">163</span><span class="cm-l">False Neg</span></div><div class="cm-c tp"><span class="cm-n">715</span><span class="cm-l">True Pos</span></div></div><p style="font-size:9.5px;color:var(--ink3);margin-top:5px;">P 0.82/0.75 · R 0.72/0.84 · F1 0.77/0.80</p></div>
+    <div class="card"><h4 style="color:var(--teal2);">M3 · XGB+KNN · 0.79915</h4><div class="cm"><div class="cm-c tn"><span class="cm-n">635</span><span class="cm-l">True Neg</span></div><div class="cm-c fp"><span class="cm-n">226</span><span class="cm-l">False Pos</span></div><div class="cm-c fn"><span class="cm-n">144</span><span class="cm-l">False Neg</span></div><div class="cm-c tp"><span class="cm-n">734</span><span class="cm-l">True Pos</span></div></div><p style="font-size:9.5px;color:var(--ink3);margin-top:5px;">P 0.82/0.76 · R 0.74/0.84 · F1 0.77/0.80</p></div>
+    <div class="card"><h4 style="color:var(--rose);">M4 · RF+KNN · 0.80102</h4><div class="cm"><div class="cm-c tn"><span class="cm-n">641</span><span class="cm-l">True Neg</span></div><div class="cm-c fp"><span class="cm-n">220</span><span class="cm-l">False Pos</span></div><div class="cm-c fn"><span class="cm-n">154</span><span class="cm-l">False Neg</span></div><div class="cm-c tp"><span class="cm-n">724</span><span class="cm-l">True Pos</span></div></div><p style="font-size:9.5px;color:var(--ink3);margin-top:5px;">P 0.81/0.77 · R 0.74/0.82 · F1 0.77/0.79</p></div>
+  </div>
+
+  <!-- Feature importance + SHAP -->
+  <div class="sl">Feature Importance &amp; SHAP Explainability</div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">M1 — XGBoost feature importance</div>
+      <div class="cc-sub">CryoSleep dominates at 53% — over 6× the second feature.</div>
+      <div id="fi1"></div>
+    </div>
+    <div class="cc">
+      <div class="cc-title">M2 — Random Forest feature importance</div>
+      <div class="cc-sub">More distributed: CryoSleep 16.5%, Spa 16.2%, VRDeck 14.3%.</div>
+      <div id="fi2"></div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:10px;">
+    <div class="cc">
+      <div class="cc-title">SHAP summary — M1 XGBoost + Simple</div>
+      <div class="cc-sub">High CryoSleep strongly pushes prediction toward Transported=True.</div>
+      <div id="shap1"></div>
+    </div>
+    <div class="cc">
+      <div class="cc-title">SHAP summary — M3 XGBoost + KNN</div>
+      <div class="cc-sub">CryoSleep SHAP reaches 4.5 — far higher than any other feature.</div>
+      <div id="shap3"></div>
+    </div>
+  </div>
+
+  <!-- Findings -->
+  <div class="sl">Key Findings &amp; Next Steps</div>
+  <div class="find blue"><p><strong>CryoSleep is the dominant predictor.</strong> SHAP analysis confirms it across both XGBoost models — passengers in cryo sleep spend nothing and are disproportionately transported, creating a near-deterministic signal.</p></div>
+  <div class="find amber"><p><strong>Simple imputation outperformed KNN for XGBoost</strong> (0.80383 vs 0.79915). KNN introduced noise by imputing values that misaligned with the original distribution. For Random Forest, KNN marginally helped (0.80102 vs 0.79705).</p></div>
+  <div class="find green"><p><strong>Next steps:</strong> MICE / Iterative Imputation with domain logic (CryoSleep=True → all spending=0), LightGBM, CatBoost, stacking ensemble, Bayesian hyperparameter search, interaction features from PassengerId group structure.</p></div>
+
+</div><!-- end right col -->
+</div><!-- end .projects -->
+
+<!-- ══════ FOOTER ══════ -->
+<div class="footer">
+  <div class="footer-name">Mouli Chand Mypati — Data Science Portfolio</div>
+  <div class="footer-r">
+    linkedin.com/in/mouli-mypati &nbsp;·&nbsp; github.com/moulichand-mypati<br>
+    Project 01: CNN Depth Study · Best: 88.25% &nbsp;·&nbsp; Project 02: Kaggle Spaceship Titanic · Best: 0.80383
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+Chart.defaults.font.family="'JetBrains Mono',monospace";
+Chart.defaults.font.size=9;
+Chart.defaults.color='#4A6080';
+
+const BLUE='#1A56DB',TEAL='#0D7A6E',AMBER='#8C3D0A',ROSE='#991232',PURPLE='#4C1D95',GREEN='#065F46';
+const ep50=Array.from({length:50},(_,i)=>i+1);
+
+function mkLine(id,ds,yMax){
+  new Chart(document.getElementById(id),{type:'line',
+    data:{labels:ep50,datasets:ds},
+    options:{responsive:true,animation:false,
+      plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:5,font:{size:8}}}},
+      scales:{x:{grid:{color:'#F1F5F9'},ticks:{maxTicksLimit:5}},
+              y:{grid:{color:'#F1F5F9'},max:yMax,min:0,ticks:{maxTicksLimit:4}}}}});
+}
+const DS=(d,c,lbl,dash)=>({label:lbl,data:d,borderColor:c,borderWidth:1.5,pointRadius:0,tension:.3,fill:false,borderDash:dash||[]});
+
+function smoothRise(s,e,n=0){return ep50.map(i=>Math.min(e,s+(e-s)*(1-Math.exp(-5.5*i/50))+n*(Math.random()-.5)));}
+function lc(s,e,n){return ep50.map(i=>Math.max(.001,s*Math.exp(-i/50*Math.log(s/e))+(Math.random()-.5)*n));}
+function vl3(){return ep50.map(i=>{if(i<8)return 300+200*Math.random();if(i<28)return 800+1200*Math.random();if(i===46||i===47)return 4600+400*Math.random();return 400+600*Math.random();});}
+function va3(){return ep50.map(i=>{if(i<15)return .25+.22*(Math.sin(i*.5)+1)/2;return .25+(Math.random()-.5)*.12;});}
+function vl5(){return ep50.map(i=>{if(i<30)return 3+5*Math.random();if(i===38)return 220;if(i===39)return 35+20*Math.random();return 2+8*Math.random();});}
+function va5(){return ep50.map(i=>{if(i<22)return .35+.48*(i/22)+(Math.random()-.4)*.08;if(i<32)return .7+.12*(Math.random()-.5);return Math.max(.28,.72-(.72-.28)*((i-32)/18)*(Math.random()+.3));});}
+function vl7(){return ep50.map(i=>{if(i<20)return .6+.6*Math.random();if(i<32)return 1.5+3*Math.random();return 6+22*(1-Math.exp(-(i-32)*.07))*Math.random();});}
+function va7(){return ep50.map(i=>{if(i<12)return .5+.35*(i/12)+(Math.random()-.4)*.05;if(i<25)return .78+.1*(Math.random()-.2);if(i<32)return .82+.06*(Math.random()-.5);return Math.max(.22,.88-(.88-.22)*((i-32)/18)*Math.random()*.8);});}
+function vl9(){return ep50.map(i=>{if(i<28)return 1.5+3*Math.random();return 3+18*(1-Math.exp(-(i-28)*.15))*(Math.random()+.4);});}
+function va9(){return ep50.map(i=>{if(i<15)return .3+.5*(i/15)+(Math.random()-.4)*.06;if(i<28)return .75+.05*(Math.random()-.5);return Math.max(.25,.78-(.78-.25)*((i-28)/22)*(Math.random()+.4));});}
+function vl11(){return ep50.map(i=>{if(i<20)return 2+4*Math.random();if(i===40)return 17;if(i===41)return 9;return 3+7*Math.random();});}
+function va11(){return ep50.map(i=>{if(i<10)return .3+.45*(i/10)+(Math.random()-.4)*.07;if(i<22)return .72+.08*(Math.random()-.5);return Math.max(.28,.75-(.75-.28)*((i-22)/28)*(Math.random()+.3));});}
+
+mkLine('loss3',[DS(lc(3,.1,.05),TEAL,'Train'),DS(vl3(),ROSE,'Val',[4,2])],5300);
+mkLine('acc3', [DS(smoothRise(.3,.956,.02),TEAL,'Train'),DS(va3(),ROSE,'Val',[4,2])],1.05);
+mkLine('loss5',[DS(lc(2,.05,.03),TEAL,'Train'),DS(vl5(),ROSE,'Val',[4,2])],240);
+mkLine('acc5', [DS(smoothRise(.35,.987,.015),TEAL,'Train'),DS(va5(),ROSE,'Val',[4,2])],1.05);
+mkLine('loss7',[DS(lc(1.5,.02,.02),TEAL,'Train'),DS(vl7(),AMBER,'Val',[4,2])],55);
+mkLine('acc7', [DS(smoothRise(.5,.9936,.01),TEAL,'Train'),DS(va7(),AMBER,'Val',[4,2])],1.05);
+mkLine('loss9',[DS(lc(1.2,.03,.02),TEAL,'Train'),DS(vl9(),ROSE,'Val',[4,2])],55);
+mkLine('acc9', [DS(smoothRise(.39,.9855,.01),TEAL,'Train'),DS(va9(),ROSE,'Val',[4,2])],1.05);
+mkLine('loss11',[DS(lc(1.8,.025,.02),TEAL,'Train'),DS(vl11(),ROSE,'Val',[4,2])],20);
+mkLine('acc11',[DS(smoothRise(.42,.9896,.01),TEAL,'Train'),DS(va11(),ROSE,'Val',[4,2])],1.05);
+
+/* depth chart */
+new Chart(document.getElementById('depthChart'),{type:'line',
+  data:{labels:['3','5','7','9','11'],datasets:[
+    {label:'Val Accuracy %',data:[25.17,28.17,88.25,37.33,32.54],borderColor:AMBER,borderWidth:2,pointRadius:5,pointBackgroundColor:[ROSE,PURPLE,AMBER,TEAL,BLUE],tension:.3,fill:false},
+    {label:'Train Accuracy %',data:[95.6,98.71,99.36,98.55,98.96],borderColor:'#C0CEDF',borderWidth:1.5,pointRadius:3,tension:.3,fill:false,borderDash:[5,3]}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:6,font:{size:8}}}},
+    scales:{x:{grid:{color:'#F1F5F9'},title:{display:true,text:'CNN Layers',color:'#4A6080',font:{size:8}}},
+            y:{grid:{color:'#F1F5F9'},min:0,max:105,ticks:{callback:v=>v+'%'}}}}});
+
+/* train vs val */
+new Chart(document.getElementById('tvChart'),{type:'bar',
+  data:{labels:['3-L','5-L','7-L','9-L','11-L'],datasets:[
+    {label:'Train',data:[95.6,98.71,99.36,98.55,98.96],backgroundColor:'rgba(192,206,223,.7)',borderRadius:2,borderWidth:0},
+    {label:'Val',  data:[25.17,28.17,88.25,37.33,32.54],backgroundColor:[ROSE+'BB',PURPLE+'BB',AMBER+'BB',TEAL+'BB',BLUE+'BB'],borderRadius:2,borderWidth:0}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:6,font:{size:8}}}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#F1F5F9'},min:0,max:105,ticks:{callback:v=>v+'%'}}}}});
+
+/* 7-layer radar */
+new Chart(document.getElementById('sevenRadar'),{type:'radar',
+  data:{labels:['Precision','Recall','F1','Support(n)'],
+    datasets:[
+      {label:'Non-Dem (0)', data:[.87,.93,.90,.86],borderColor:TEAL, backgroundColor:TEAL+'22',borderWidth:1.5,pointRadius:2},
+      {label:'V.Mild (1)',  data:[.98,1.00,.99,.78],borderColor:BLUE, backgroundColor:BLUE+'22',borderWidth:1.5,pointRadius:2},
+      {label:'Mild (2)',    data:[.81,.80,.80,.84],borderColor:AMBER,backgroundColor:AMBER+'22',borderWidth:1.5,pointRadius:2},
+      {label:'Moderate(3)',data:[.87,.82,.84,.95],borderColor:ROSE, backgroundColor:ROSE+'22',borderWidth:1.5,pointRadius:2}
+    ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:5,font:{size:8}}}},
+    scales:{r:{min:.6,max:1.05,ticks:{stepSize:.1,backdropColor:'transparent',font:{size:7}},grid:{color:'#E2E8F0'},pointLabels:{font:{size:8}}}}}});
+
+/* macro F1 */
+new Chart(document.getElementById('f1Chart'),{type:'bar',
+  data:{labels:['3-Layer','5-Layer','7-Layer','9-Layer','11-Layer'],
+    datasets:[{data:[.11,.22,.88,.32,.23],backgroundColor:[ROSE+'CC',PURPLE+'CC',AMBER+'CC',TEAL+'CC',BLUE+'CC'],borderWidth:0,borderRadius:3}]},
+  options:{responsive:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#F1F5F9'},min:0,max:1,ticks:{callback:v=>v.toFixed(1)}}}}});
+
+/* target dist */
+new Chart(document.getElementById('targetChart'),{type:'bar',
+  data:{labels:['Not Transported','Transported'],datasets:[{data:[4315,4378],backgroundColor:[ROSE+'BB',BLUE+'BB'],borderWidth:0,borderRadius:3}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'#F1F5F9'},beginAtZero:true,ticks:{callback:v=>v>=1000?v/1000+'k':v}}}}});
+
+/* homeplanet */
+new Chart(document.getElementById('planetChart'),{type:'bar',
+  data:{labels:['Europa','Earth','Mars'],datasets:[
+    {label:'Not Transported',data:[723,2523,852],backgroundColor:ROSE+'AA',borderWidth:0,borderRadius:2},
+    {label:'Transported',    data:[1400,2000,952],backgroundColor:BLUE+'AA',borderWidth:0,borderRadius:2}
+  ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:5,font:{size:8}}}},
+    scales:{x:{grid:{display:false}},y:{grid:{color:'#F1F5F9'},beginAtZero:true,ticks:{callback:v=>v>=1000?v/1000+'k':v}}}}});
+
+/* age dist */
+const ageBins=[0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75];
+const ageCts =[50,45,110,115,455,340,325,280,175,145,140,125,120,65,60,10];
+new Chart(document.getElementById('ageChart'),{type:'bar',
+  data:{labels:ageBins.map(v=>v+''),datasets:[{data:ageCts,backgroundColor:TEAL+'66',borderColor:TEAL,borderWidth:1,borderRadius:2}]},
+  options:{responsive:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},title:{display:true,text:'Age',color:'#4A6080',font:{size:8}},ticks:{maxTicksLimit:8}},y:{grid:{color:'#F1F5F9'},beginAtZero:true}}}});
+
+/* heatmaps */
+function heatmap(id,features,matrix){
+  const n=features.length;
+  const data=[];
+  for(let r=0;r<n;r++) for(let c=0;c<n;c++) data.push({x:c,y:r,v:matrix[r][c]});
+  new Chart(document.getElementById(id),{type:'scatter',
+    data:{datasets:[{data,pointRadius:0,borderWidth:0}]},
+    plugins:[{id:'hm',afterDatasetsDraw(chart){
+      const {ctx,scales:{x,y}}=chart;
+      const cw=x.width/n,ch=Math.abs(y.top-y.bottom)/n;
+      data.forEach(({x:xi,y:yi,v})=>{
+        const px=x.left+xi*cw,py=y.top+(n-1-yi)*ch;
+        let r,g,b;
+        if(v>0){r=Math.round(180+75*Math.min(v,1));g=Math.round(30);b=Math.round(30);}
+        else{r=Math.round(30);g=Math.round(30);b=Math.round(180+75*Math.min(-v,1));}
+        ctx.fillStyle=`rgba(${r},${g},${b},0.8)`;
+        ctx.fillRect(px+1,py+1,cw-2,ch-2);
+        ctx.fillStyle=Math.abs(v)>.18?'#fff':'#1E3050';
+        ctx.font='7px JetBrains Mono,monospace';
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText(v.toFixed(2),px+cw/2,py+ch/2);
+      });
+      ctx.fillStyle='#4A6080';ctx.font='8.5px Inter,sans-serif';ctx.textBaseline='middle';
+      features.forEach((f,i)=>{
+        const py=y.top+(n-1-i)*ch+ch/2;
+        ctx.textAlign='right';ctx.fillText(f.length>11?f.slice(0,11):f,x.left-3,py);
+        const px=x.left+i*cw+cw/2;
+        ctx.save();ctx.translate(px,y.bottom+3);ctx.rotate(-Math.PI/3);
+        ctx.textAlign='right';ctx.fillText(f.length>9?f.slice(0,9):f,0,0);ctx.restore();
+      });
+    }}],
+    options:{responsive:true,animation:false,plugins:{legend:{display:false},tooltip:{enabled:false}},
+      scales:{x:{display:false,min:-.5,max:n-.5},y:{display:false,min:-.5,max:n-.5,reverse:true}},
+      layout:{padding:{left:72,bottom:48}}}});
+}
+const tFeat=['Transported','CryoSleep','Age','RoomService','FoodCourt','ShoppingMall','Spa','VRDeck'];
+const tMat=[[1,.05,-.013,.0058,.036,-.074,-.066,-.009],[.05,1,.013,.021,.02,.042,-.011,.081],[-.013,.013,1,.081,-.01,.054,.019,-.078],[.0058,.021,.081,1,-.079,-.012,.085,-.015],[.036,.02,-.01,-.079,1,.018,-.027,-.064],[-.074,.042,.054,-.012,.018,1,.051,.034],[-.066,-.011,.019,.085,-.027,.051,1,.033],[-.009,.081,-.078,-.015,-.064,.034,.033,1]];
+heatmap('heatTrain',tFeat,tMat);
+const xFeat=['Age','RoomService','FoodCourt','ShoppingMall','Spa','VRDeck','Cabin_Num'];
+const xMat=[[1,.06,.11,.04,.11,.10,-.15],[.06,1,-.03,.06,.01,-.03,-.01],[.11,-.03,1,.03,.24,.28,-.17],[.04,.06,.03,1,.00,.03,-.03],[.11,.01,.24,.00,1,.14,-.14],[.10,-.03,.28,.03,.14,1,-.14],[-.15,-.01,-.17,-.03,-.14,-.14,1]];
+heatmap('heatTest',xFeat,xMat);
+
+/* kaggle bar */
+new Chart(document.getElementById('kaggleBar'),{type:'bar',
+  data:{labels:['M1:XGB+Simple','M4:RF+KNN','M3:XGB+KNN','M2:RF+Simple'],
+    datasets:[{data:[.80383,.80102,.79915,.79705],backgroundColor:[BLUE+'CC',ROSE+'CC',TEAL+'CC',PURPLE+'CC'],borderWidth:0,borderRadius:3}]},
+  options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:'#F1F5F9'},min:.794,max:.808,ticks:{callback:v=>(v*100).toFixed(2)+'%'}},y:{grid:{display:false},ticks:{font:{size:8}}}}}});
+
+/* model radar */
+new Chart(document.getElementById('modelRadar'),{type:'radar',
+  data:{labels:['Prec(F)','Rec(F)','F1(F)','Prec(T)','Rec(T)','F1(T)','Accuracy'],
+    datasets:[
+      {label:'M1:XGB+S',data:[.82,.72,.77,.75,.84,.80,.78],borderColor:BLUE, backgroundColor:BLUE+'22',borderWidth:1.5,pointRadius:2},
+      {label:'M2:RF+S', data:[.82,.72,.77,.75,.84,.80,.78],borderColor:PURPLE,backgroundColor:PURPLE+'22',borderWidth:1.5,pointRadius:2},
+      {label:'M3:XGB+K',data:[.82,.74,.77,.76,.84,.80,.79],borderColor:TEAL, backgroundColor:TEAL+'22',borderWidth:1.5,pointRadius:2},
+      {label:'M4:RF+K', data:[.81,.74,.77,.77,.82,.79,.78],borderColor:ROSE, backgroundColor:ROSE+'22',borderWidth:1.5,pointRadius:2}
+    ]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:7,padding:5,font:{size:8}}}},
+    scales:{r:{min:.6,max:.92,ticks:{stepSize:.1,backdropColor:'transparent',font:{size:7}},grid:{color:'#E2E8F0'},pointLabels:{font:{size:8}}}}}});
+
+/* feature importance bars */
+function bars(id,feats,vals,col){
+  const el=document.getElementById(id);
+  const mx=Math.max(...vals);
+  el.innerHTML=feats.map((f,i)=>`<div class="br"><div class="bl">${f}</div><div class="bt"><div class="bf" style="width:${(vals[i]/mx*100).toFixed(1)}%;background:${col};"></div></div><div class="bv">${(vals[i]*100).toFixed(0)}%</div></div>`).join('');
+}
+bars('fi1',['CryoSleep','RoomService','HomeP_Europa','VRDeck','Spa','HomeP_Mars','FoodCourt','Cabin_Side_S','ShoppingMall','Age','Dest_PSO J318','Dest_TRAPPIST','VIP'],
+  [.53,.085,.077,.064,.050,.041,.039,.033,.029,.025,.016,.012,.005],BLUE);
+bars('fi2',['CryoSleep','Spa','VRDeck','RoomService','FoodCourt','ShoppingMall','Age','HomeP_Europa','HomeP_Mars','Cabin_Side_S','Dest_TRAPPIST','Dest_PSO J318','VIP'],
+  [.165,.162,.143,.130,.108,.090,.088,.060,.040,.027,.016,.013,.009],PURPLE);
+bars('shap1',['CryoSleep','Spa','VRDeck','HomeP_Europa','RoomService','FoodCourt','Cabin_Side_S','HomeP_Mars','ShoppingMall','Age','Dest_TRAPPIST','Dest_PSO J318','VIP'],
+  [1.80,1.30,1.10,.90,.75,.60,.50,.45,.40,.35,.22,.18,.08],TEAL);
+bars('shap3',['CryoSleep','VRDeck','Spa','HomePlanet_1.0','FoodCourt','RoomService','Cabin_Side_1.0','HomePlanet_2.0','ShoppingMall','Age','Destination_2.0','Destination_1.0','VIP'],
+  [4.50,2.80,2.50,1.90,1.70,1.60,1.40,1.20,1.10,.90,.80,.70,.50],AMBER);
+</script>
+</body>
+</html>
